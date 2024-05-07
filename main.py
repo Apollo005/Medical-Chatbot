@@ -78,5 +78,10 @@ index_name='med-chatbot'
 vectorstore.add_texts(texts=[t.page_content for t in text_chunks])
 
 
+        
+
+query = "What are Allergies"
+result = index.query(queries=[query], top_k=3)
+print("Result", result)
 
 
