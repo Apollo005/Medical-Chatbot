@@ -12,7 +12,7 @@ from pinecone import Pinecone, ServerlessSpec
 from langchain_pinecone import PineconeVectorStore
 
 
-PINECONE_API_KEY = "ab697d60-75e3-4cfe-88d9-83f88f8a025b"
+PINECONE_API_KEY = "4fee60b3-8089-45fe-9a6c-576860a6b920"
 PINECONE_API_ENV = "serverless"
 
 
@@ -50,7 +50,7 @@ print("Length", len(query_result))
 
 pc = Pinecone(api_key=PINECONE_API_KEY, environment=PINECONE_API_ENV)
 
-index_name="med-chatbot"
+index_name="medical-chatbot"
 
 if index_name not in pc.list_indexes().names():
     pc.create_index(
@@ -71,17 +71,11 @@ vectorstore = PineconeVectorStore(
 index=index,
 pinecone_api_key = PINECONE_API_KEY,
 embedding=embeddings,
-namespace="medicalChatBot",
-index_name='med-chatbot'
+namespace="medicalChatBot2",
+index_name='medical-chatbot'
 )
 
-vectorstore.add_texts(texts=[t.page_content for t in text_chunks])
-
-
-        
+##vectorstore.add_texts(texts=[t.page_content for t in text_chunks])
 
 query = "What are Allergies"
-result = index.query(queries=[query], top_k=3)
-print("Result", result)
-
 
